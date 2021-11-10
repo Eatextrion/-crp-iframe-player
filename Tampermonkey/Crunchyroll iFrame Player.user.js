@@ -3,9 +3,9 @@
 // @namespace    http://tampermonkey.net/
 // @version      2.0
 
-// @description  Este script Permite ver todos os vídeos do site crunchyroll gratuitamente.	Nota(JarEd):	Apenas modifiquei um pouco do código para UserScript, o código original já não é mais disponibilizado pelos desenvolvedores, contudo, só está aqui nessa comunidade pois o código está disponível na web em vários sites e ele é de domínio público, colocando em ênfase que não me beneficio com o mesmo.
+// @description  Permite ver todo el contenido de crucnhyroll totalmente gratis.
 
-// @author       JarEdMaster
+// @author       Eatextrion
 
 // @match        http://www.crunchyroll.com/*
 // @match        https://www.crunchyroll.com/*
