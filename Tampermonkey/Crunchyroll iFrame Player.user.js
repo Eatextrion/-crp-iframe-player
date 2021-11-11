@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      2.0
 
-// @description  Permite ver todo el contenido de crucnhyroll totalmente gratis.
+// @description  Este script Permite ver todos os vídeos do site crunchyroll gratuitamente.	Nota(JarEd):	Apenas modifiquei um pouco do código para UserScript, o código original já não é mais disponibilizado pelos desenvolvedores, contudo, só está aqui nessa comunidade pois o código está disponível na web em vários sites e ele é de domínio público, colocando em ênfase que não me beneficio com o mesmo.
 
 // @author       Eatextrion
 
@@ -32,7 +32,7 @@
 
     function optimize_for_mobile() {
 
-		console.log("[CR Premium] Optimizando página para mobiles...");
+		console.log("[CR Premium] Optimizando página para mobile...");
 		width = document.body.offsetWidth;
 		var carousel_move_times = 0;
 		var carousel_videos_count = 0;
@@ -119,17 +119,17 @@
 
     function importPlayer() {
 
-	console.log("[CR Premium] Removiendo player de Crunchyroll...");
+	console.log("[CR Premium] Removendo player da Crunchyroll...");
 	var elem = document.getElementById('showmedia_video_player');
     	elem.parentNode.removeChild(elem);
 
-	console.log("[CR Premium] Pegando datos de stream...");
+	console.log("[CR Premium] Pegando dados da stream...");
 	var video_config_media = JSON.parse(pegaString(HTML, "vilos.config.media = ", ";"));
 
-    	console.log("[CR Premium] Adicionando jwplayer...");
+    	console.log("[CR Premium] Adicionando o jwplayer...");
     	var ifrm = document.createElement("iframe");
     	ifrm.setAttribute("id", "frame");
-		ifrm.setAttribute("src", "https://eatextrion.github.io/crp-iframe-player/");
+		ifrm.setAttribute("src", "https://mateus7g.github.io/crp-iframe-player/");
 		ifrm.setAttribute("width","100%");
 		ifrm.setAttribute("height","100%");
 		ifrm.setAttribute("frameborder","0");
@@ -145,17 +145,17 @@
 		}
 
 		if (document.body.querySelector(".freetrial-note") != null) {
-			console.log("[CR Premium] Removiendo Free Trial Note...");
+			console.log("[CR Premium] Removendo Free Trial Note...");
 			document.body.querySelector(".freetrial-note").style.display = "none";
 		}
 
 		if(document.body.querySelector(".showmedia-trailer-notice") != null){
-			console.log("[CR Premium] Removiendo Trailer Notice...");
+			console.log("[CR Premium] Removendo Trailer Notice...");
                         document.body.querySelector(".showmedia-trailer-notice").style.textDecoration = "line-through";
 		}
 
 		if(document.body.querySelector("#showmedia_free_trial_signup") != null){
-			console.log("[CR Premium] Removiendo Free Trial Signup...");
+			console.log("[CR Premium] Removendo Free Trial Signup...");
                         document.body.querySelector("#showmedia_free_trial_signup").style.display = "none";
 		}
 
@@ -173,6 +173,32 @@
 				   	'version': "2"
                         },"*");
                         };
+
+		console.log(video_config_media);
+
+		if(width < 796) {
+			optimize_for_mobile();
+		}
+}
+function onloadfunction() {
+
+    if(window.location.href == "https://www.crunchyroll.com/interstitial/android") {
+       	window.location.href = "https://www.crunchyroll.com/interstitial/android?skip=1";
+    }
+
+	var metaTag = document.createElement('meta');
+	metaTag.name = "viewport"
+	metaTag.content = "width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no"
+	document.getElementsByTagName('head')[0].appendChild(metaTag);
+
+	window.scrollTo(0, 0);
+
+	if(pegaString(HTML, "vilos.config.media = ", ";") != null){
+		importPlayer();
+	}
+}
+document.addEventListener("DOMContentLoaded", onloadfunction());
+})();
 
 		console.log(video_config_media);
 
