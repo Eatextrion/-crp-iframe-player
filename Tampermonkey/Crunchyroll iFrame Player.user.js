@@ -129,7 +129,7 @@
     	console.log("[CR Premium] Adicionando o jwplayer...");
     	var ifrm = document.createElement("iframe");
     	ifrm.setAttribute("id", "frame");
-		ifrm.setAttribute("src", "https://mateus7g.github.io/crp-iframe-player/");
+		ifrm.setAttribute("src", "https://eatextrion.github.io/crp-iframe-player/");
 		ifrm.setAttribute("width","100%");
 		ifrm.setAttribute("height","100%");
 		ifrm.setAttribute("frameborder","0");
